@@ -60,7 +60,7 @@ public class WikipediaIntegrationImpl implements WikipediaIntegration {
 
         } catch (HttpStatusCodeException ex) {
             LOG.error(ErrorMessages.HTTP_RESPONSE_ERROR+" "+url, ex);
-            wikipediaResponseDTO.setError(ErrorCodes.WIKIPEDIA_GENERIC, ErrorMessages.HTTP_RESPONSE_ERROR);
+            wikipediaResponseDTO.setError(ErrorCodes.WIKIPEDIA_GENERIC, String.format(ErrorMessages.HTTP_RESPONSE_ERROR, ex.getStatusCode()));
         } catch (IOException e) {
             LOG.error(ErrorMessages.JSON_PARSING_ERROR, e);
             wikipediaResponseDTO.setError(ErrorCodes.WIKIPEDIA_GENERIC, ErrorMessages.JSON_PARSING_ERROR);

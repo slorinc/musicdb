@@ -58,7 +58,7 @@ public class MusicBrainzIntegrationImpl implements MusicBrainzIntegration {
             musicBrainzResponseDTO = objectMapper.readValue(artistDataJSON, MusicBrainzResponseDTO.class);
         } catch (HttpStatusCodeException ex) {
             LOG.error(ErrorMessages.HTTP_RESPONSE_ERROR+" "+url, ex);
-            musicBrainzResponseDTO.setError(ErrorCodes.MUSIC_BRAINZ_GENERIC, ErrorMessages.HTTP_RESPONSE_ERROR);
+            musicBrainzResponseDTO.setError(ErrorCodes.MUSIC_BRAINZ_GENERIC, String.format(ErrorMessages.HTTP_RESPONSE_ERROR, ex.getStatusCode()));
         } catch (IOException e) {
             LOG.error(ErrorMessages.JSON_PARSING_ERROR, e);
             musicBrainzResponseDTO.setError(ErrorCodes.MUSIC_BRAINZ_GENERIC, ErrorMessages.JSON_PARSING_ERROR);

@@ -62,7 +62,7 @@ class CoverArtArchiveIntegrationImpl implements CoverArtArchiveIntegration {
             coverArtArchiveResponseDTO = objectMapper.readValue(coverArtJSON, CoverArtArchiveResponseDTO.class);
         } catch (HttpStatusCodeException ex) {
             LOG.error(ErrorMessages.HTTP_RESPONSE_ERROR+" "+url, ex);
-            coverArtArchiveResponseDTO.setError(ErrorCodes.COVERART_GENERIC, ErrorMessages.HTTP_RESPONSE_ERROR);
+            coverArtArchiveResponseDTO.setError(ErrorCodes.COVERART_GENERIC, String.format(ErrorMessages.HTTP_RESPONSE_ERROR, ex.getStatusCode()));
         } catch (IOException e) {
             LOG.error(ErrorMessages.JSON_PARSING_ERROR, e);
             coverArtArchiveResponseDTO.setError(ErrorCodes.COVERART_GENERIC, ErrorMessages.JSON_PARSING_ERROR);
