@@ -1,6 +1,7 @@
 package com.cabonline.musicdb.service;
 
 import com.cabonline.musicdb.dto.*;
+import com.cabonline.musicdb.error.ErrorCodes;
 import com.cabonline.musicdb.error.ErrorMessages;
 import com.cabonline.musicdb.vo.Album;
 import org.slf4j.Logger;
@@ -72,6 +73,7 @@ public class MusicFacadeImpl implements MusicFacade {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
+                errors.add(new ErrorDTO(ErrorCodes.MUSICDB_GENERIC, e.getMessage()));
                 LOG.error(ErrorMessages.GENERIC_ERROR, e);
             }
         }
@@ -92,9 +94,11 @@ public class MusicFacadeImpl implements MusicFacade {
                         }
 
                     } catch (InterruptedException e) {
+                        errors.add(new ErrorDTO(ErrorCodes.MUSICDB_GENERIC, e.getMessage()));
                         LOG.error(ErrorMessages.GENERIC_ERROR, e);
-                    } catch (ExecutionException e) {
-                        LOG.error(ErrorMessages.GENERIC_ERROR, e);
+                    } catch (ExecutionException ex) {
+                        errors.add(new ErrorDTO(ErrorCodes.MUSICDB_GENERIC, ex.getMessage()));
+                        LOG.error(ErrorMessages.GENERIC_ERROR, ex);
                     }
 
                     albums.add(new Album(p.getTitle(), p.getMdId(), imageUrl));
