@@ -1,5 +1,7 @@
-package com.cabonline.musicdb.dto;
+package com.cabonline.musicdb.dto.builder;
 
+import com.cabonline.musicdb.dto.ErrorDTO;
+import com.cabonline.musicdb.dto.MusicDBResponseDTO;
 import com.cabonline.musicdb.vo.Album;
 
 import java.util.List;
