@@ -10,7 +10,7 @@ Heroku
 --
 
 Deployed to:
-    https://musicdb.herokuapp.com/ 
+    https://slorincmusicdb.herokuapp.com/ 
 
 Endpoint(s)
 --
@@ -18,12 +18,19 @@ Endpoint(s)
 Query
 
     curl -X GET https://slorincmusicdb.herokuapp.com/musicdb/public/mbid/{mdid}
-        
 
 Metrics
 
     curl -X GET https://slorincmusicdb.herokuapp.com/musicdb/metrics
 
+Environment
+
+    curl -X GET https://slorincmusicdb.herokuapp.com/musicdb/env
+
+Health
+
+    curl -X GET https://slorincmusicdb.herokuapp.com/musicdb/health
+    
 TODO
 --
 
