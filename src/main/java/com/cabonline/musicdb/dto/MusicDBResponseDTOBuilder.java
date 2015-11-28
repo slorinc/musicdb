@@ -5,7 +5,6 @@ import com.cabonline.musicdb.vo.Album;
 import java.util.List;
 
 public class MusicDBResponseDTOBuilder {
-
     private String mbId;
     private String description;
     private List<Album> albums;
