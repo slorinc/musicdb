@@ -17,12 +17,12 @@ Endpoint(s)
 
 Query
 
-    curl -X GET https://musicdb.herokuapp.com/musicdb/public/mbid/{mdid}
+    curl -X GET https://slorincmusicdb.herokuapp.com/musicdb/public/mbid/{mdid}
         
 
 Metrics
 
-    curl -X GET https://musicdb.herokuapp.com/musicdb/metrics
+    curl -X GET https://slorincmusicdb.herokuapp.com/musicdb/metrics
 
 TODO
 --
