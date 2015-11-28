@@ -11,6 +11,14 @@ public class RestResponse {
     private String errorCode;
     private String errorMessage;
 
+    public RestResponse() {
+    }
+
+    public RestResponse(String errorCode, String errorMessage) {
+        this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
+    }
+
     public void setError(String errorCode, String errorMessage){
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;

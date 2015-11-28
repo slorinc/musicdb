@@ -11,13 +11,7 @@ import java.util.List;
  * Created by s_lor_000 on 11/24/2015.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MusicDBResponseDTO extends RestResponse {
-
-    public MusicDBResponseDTO(String mbId, String description, List<Album> albums) {
-        this.mbId = mbId;
-        this.description = description;
-        this.albums = albums;
-    }
+public class MusicDBResponseDTO {
 
     @JsonProperty("mbid")
     private String mbId;
@@ -27,6 +21,14 @@ public class MusicDBResponseDTO extends RestResponse {
     private List<Album> albums;
 
     private List<RestResponse> errors;
+
+
+    public MusicDBResponseDTO(String mbId, String description, List<Album> albums, List<RestResponse> errors) {
+        this.mbId = mbId;
+        this.description = description;
+        this.albums = albums;
+        this.errors = errors;
+    }
 
     public String getMbId() {
         return mbId;

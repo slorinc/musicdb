@@ -1,14 +1,17 @@
 package com.cabonline.musicdb.service;
 
 import com.cabonline.musicdb.dto.*;
+import com.cabonline.musicdb.error.ErrorMessages;
 import com.cabonline.musicdb.vo.Album;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * Created by s_lor_000 on 11/24/2015.
@@ -25,16 +28,77 @@ public class MusicFacadeImpl implements MusicFacade {
     @Autowired
     private CoverArtArchiveIntegration coverArtArchiveIntegration;
 
+    private static final Logger LOG = LoggerFactory.getLogger(MusicFacadeImpl.class);
+
 
     @Override
     public MusicDBResponseDTO query(String mbId) throws IOException {
         List<RestResponse> errors = new LinkedList<>();
+        // musicbrainz
         MusicBrainzResponseDTO musicBrainzResponseDTO = musicBrainzIntegration.query(mbId);
-        String[] urlBits = musicBrainzResponseDTO.getRelationList().stream().filter(p -> p.getType().equals("wikipedia")).findFirst().get().getUrl().getResource().split("/");
-        WikipediaResponseDTO wikipediaResponseDTO = wikipediaIntegration.query(urlBits[urlBits.length-1]);
+
+        addErrors(errors, musicBrainzResponseDTO);
+
+        // coverart
+        Map<String, Future<CoverArtArchiveResponseDTO>> futureList = new HashMap<>();
+        musicBrainzResponseDTO.getReleasesList().stream().filter(release -> release.getPrimaryType().equalsIgnoreCase("album")).forEach(album -> futureList.put(album.getMdId(), coverArtArchiveIntegration.query(album.getMdId())));
+
+
+        String[] urlBits = musicBrainzResponseDTO.getRelationList().stream().filter(relation -> relation.getType().equalsIgnoreCase("wikipedia")).findFirst().get().getUrl().getResource().split("/");
+        WikipediaResponseDTO wikipediaResponseDTO = wikipediaIntegration.query(urlBits[urlBits.length - 1]);
+        addErrors(errors, wikipediaResponseDTO);
         List<Album> albums = new ArrayList<>();
-        musicBrainzResponseDTO.getReleasesList().stream().forEach(p -> albums.add(new Album(p.getTitle(),p.getMdId(),null)));
-        MusicDBResponseDTO musicDBResponseDTO =  new MusicDBResponseDTOBuilder().setMbId(mbId).setDescription(wikipediaResponseDTO.getExtract()).setAlbums(albums).createMusicDBResponseDTO();
+
+        while (futureList.values().stream().anyMatch(future -> !future.isDone())) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                LOG.error(ErrorMessages.GENERIC_ERROR, e);
+            }
+        }
+        musicBrainzResponseDTO.getReleasesList().stream().forEach(p -> {
+
+                    String imageUrl = null;
+                    try {
+                        CoverArtArchiveResponseDTO coverArtArchiveResponseDTO = futureList.get(p.getMdId()).get();
+
+                        addErrors(errors, wikipediaResponseDTO);
+
+                        List<CoverArtImagesDTO> images = coverArtArchiveResponseDTO.getImages();
+
+                        if (images == null || images.get(0) == null) {
+                            LOG.warn(ErrorMessages.MISSING_IMAGE + " for mdib : {}", p.getMdId());
+                        } else {
+                            imageUrl = images.get(0).getImage();
+                        }
+
+                    } catch (InterruptedException e) {
+                        LOG.error(ErrorMessages.GENERIC_ERROR, e);
+                    } catch (ExecutionException e) {
+                        LOG.error(ErrorMessages.GENERIC_ERROR, e);
+                    }
+
+                    albums.add(new Album(p.getTitle(), p.getMdId(), imageUrl));
+                }
+        );
+
+
+        MusicDBResponseDTO musicDBResponseDTO = new MusicDBResponseDTOBuilder()
+                .setMbId(mbId)
+                .setDescription(wikipediaResponseDTO.getQuery().getPages().values().stream().findFirst().get().get("extract"))
+                .setAlbums(albums)
+                .createMusicDBResponseDTO();
+
+        if(!errors.isEmpty()){
+            musicDBResponseDTO.setErrors(errors);
+        }
+
         return musicDBResponseDTO;
+    }
+
+    private <T extends RestResponse> void addErrors(List<RestResponse> errors, T dto) {
+        if (dto.getErrorCode() != null) {
+            errors.add(new RestResponse(dto.getErrorCode(), dto.getErrorMessage()));
+        }
     }
 }

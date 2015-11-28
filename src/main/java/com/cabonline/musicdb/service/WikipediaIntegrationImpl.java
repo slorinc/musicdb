@@ -3,7 +3,6 @@ package com.cabonline.musicdb.service;
 import com.cabonline.musicdb.dto.WikipediaResponseDTO;
 import com.cabonline.musicdb.error.ErrorCodes;
 import com.cabonline.musicdb.error.ErrorMessages;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +20,6 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * Created by s_lor_000 on 11/24/2015.
@@ -54,14 +50,10 @@ public class WikipediaIntegrationImpl implements WikipediaIntegration {
             String wikipediaJSON = customRestTemplate
                     .exchange(wikipediaExtractEndpoint + title, HttpMethod.GET, entity, String.class).getBody();
             Instant after = Instant.now();
-            Map<String, Object> map = objectMapper.readValue(wikipediaJSON, new TypeReference<Map<String, Object>>() {});
-            Map<String, Object> query = (Map<String, Object>) map.get("query");
-            Map<String, Object> pages = (Map<String, Object>) query.get("pages");
-            Optional<Object> first = pages.values().stream().findFirst();
-            String extract = (String) ((LinkedHashMap) first.get()).get("extract");
-            wikipediaResponseDTO.setExtract(extract);
             //TODO set to debug
             LOG.info("Request to {} took {} ", new Object[]{wikipediaExtractEndpoint + title, Duration.between(before, after)});
+            wikipediaResponseDTO = objectMapper.readValue(wikipediaJSON, WikipediaResponseDTO.class);
+
         } catch (HttpStatusCodeException ex) {
             LOG.error(ErrorMessages.HTTP_RESPONSE_ERROR, ex);
             wikipediaResponseDTO.setError(ErrorCodes.WIKIPEDIA_GENERIC, ErrorMessages.HTTP_RESPONSE_ERROR);

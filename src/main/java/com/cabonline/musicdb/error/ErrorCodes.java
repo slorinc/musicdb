@@ -6,6 +6,8 @@ package com.cabonline.musicdb.error;
 public class ErrorCodes {
 
     public static final String ERROR_PREFIX = "MDB-";
+    public static final String MUSICDB_GENERIC = ERROR_PREFIX+"400";
     public static final String MUSIC_BRAINZ_GENERIC = ERROR_PREFIX+"500";
     public static final String WIKIPEDIA_GENERIC = ERROR_PREFIX+"501";
+    public static final String COVERART_GENERIC = ERROR_PREFIX+"502";
 }

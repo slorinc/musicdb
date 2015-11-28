@@ -3,8 +3,6 @@ package com.cabonline.musicdb.service;
 import com.cabonline.musicdb.dto.MusicBrainzResponseDTO;
 import com.cabonline.musicdb.error.ErrorCodes;
 import com.cabonline.musicdb.error.ErrorMessages;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +13,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
@@ -40,10 +37,9 @@ public class MusicBrainzIntegrationImpl implements MusicBrainzIntegration {
     private String musicbrainzArtistEndpoint;
 
     private static final Logger LOG = LoggerFactory.getLogger(MusicBrainzIntegrationImpl.class);
-    private String url;
 
     @Override
-    public MusicBrainzResponseDTO query(String mbId){
+    public MusicBrainzResponseDTO query(String mbId) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -52,13 +48,13 @@ public class MusicBrainzIntegrationImpl implements MusicBrainzIntegration {
         MusicBrainzResponseDTO musicBrainzResponseDTO = null;
         try {
             Instant before = Instant.now();
-            url = musicbrainzArtistEndpoint
+            String url = musicbrainzArtistEndpoint
                     + mbId + "?fmt=json&inc=url-rels+release-groups";
             String artistDataJSON = customRestTemplate
                     .exchange(url, HttpMethod.GET, entity, String.class).getBody();
             Instant after = Instant.now();
             //TODO set to debug
-            LOG.info("Request to {} took {} ", new Object[] {url, Duration.between(before,after)});
+            LOG.info("Request to {} took {} ", new Object[]{url, Duration.between(before, after)});
             musicBrainzResponseDTO = objectMapper.readValue(artistDataJSON, MusicBrainzResponseDTO.class);
         } catch (HttpStatusCodeException ex) {
             musicBrainzResponseDTO.setError(ErrorCodes.MUSIC_BRAINZ_GENERIC, ErrorMessages.HTTP_RESPONSE_ERROR);

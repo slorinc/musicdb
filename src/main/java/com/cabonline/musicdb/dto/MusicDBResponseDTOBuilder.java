@@ -8,6 +8,7 @@ public class MusicDBResponseDTOBuilder {
     private String mbId;
     private String description;
     private List<Album> albums;
+    private List<RestResponse> errors;
 
     public MusicDBResponseDTOBuilder setMbId(String mbId) {
         this.mbId = mbId;
@@ -24,7 +25,12 @@ public class MusicDBResponseDTOBuilder {
         return this;
     }
 
+    public MusicDBResponseDTOBuilder setErrors(List<RestResponse> errors) {
+        this.errors = errors;
+        return this;
+    }
+
     public MusicDBResponseDTO createMusicDBResponseDTO() {
-        return new MusicDBResponseDTO(mbId, description, albums);
+        return new MusicDBResponseDTO(mbId, description, albums, errors);
     }
 }
