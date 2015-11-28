@@ -40,7 +40,15 @@ public class MusicFacadeImpl implements MusicFacade {
 
         addErrors(errors, musicBrainzResponseDTO);
 
-        // coverart
+        // error is musicbrains response
+        if (!errors.isEmpty()) {
+            return new MusicDBResponseDTOBuilder()
+                    .setMbId(mbId)
+                    .setErrors(errors)
+                    .createMusicDBResponseDTO();
+        }
+
+        // coverart async
         Map<String, Future<CoverArtArchiveResponseDTO>> futureList = new HashMap<>();
         musicBrainzResponseDTO.getReleasesList().stream().filter(release -> release.getPrimaryType().equalsIgnoreCase("album")).forEach(album -> futureList.put(album.getMdId(), coverArtArchiveIntegration.query(album.getMdId())));
 
