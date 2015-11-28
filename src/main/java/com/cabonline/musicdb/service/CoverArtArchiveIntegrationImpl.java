@@ -1,7 +1,6 @@
 package com.cabonline.musicdb.service;
 
 import com.cabonline.musicdb.dto.CoverArtArchiveResponseDTO;
-import com.cabonline.musicdb.dto.MusicBrainzResponseDTO;
 import com.cabonline.musicdb.error.ErrorCodes;
 import com.cabonline.musicdb.error.ErrorMessages;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,19 +50,21 @@ class CoverArtArchiveIntegrationImpl implements CoverArtArchiveIntegration {
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
         CoverArtArchiveResponseDTO coverArtArchiveResponseDTO= new CoverArtArchiveResponseDTO();
+        String url = null;
         try {
             Instant before = Instant.now();
-            String url = coverartReleaseGroupEndpoint
+            url = coverartReleaseGroupEndpoint
                     + mbId;
             String coverArtJSON = customRestTemplate
                     .exchange(url, HttpMethod.GET, entity, String.class).getBody();
             Instant after = Instant.now();
-            //TODO set to debug
-            LOG.info("Request to {} took {} ", new Object[]{url, Duration.between(before, after)});
+            LOG.debug("Request to {} took {} ", new Object[]{url, Duration.between(before, after)});
             coverArtArchiveResponseDTO = objectMapper.readValue(coverArtJSON, CoverArtArchiveResponseDTO.class);
         } catch (HttpStatusCodeException ex) {
+            LOG.error(ErrorMessages.HTTP_RESPONSE_ERROR+" "+url, ex);
             coverArtArchiveResponseDTO.setError(ErrorCodes.COVERART_GENERIC, ErrorMessages.HTTP_RESPONSE_ERROR);
         } catch (IOException e) {
+            LOG.error(ErrorMessages.JSON_PARSING_ERROR, e);
             coverArtArchiveResponseDTO.setError(ErrorCodes.COVERART_GENERIC, ErrorMessages.JSON_PARSING_ERROR);
         }
         return new AsyncResult<>(coverArtArchiveResponseDTO);

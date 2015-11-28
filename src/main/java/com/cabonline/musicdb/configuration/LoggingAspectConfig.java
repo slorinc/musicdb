@@ -20,7 +20,6 @@ import java.util.Arrays;
 @Aspect
 public class LoggingAspectConfig {
 
-    //TODO config this
     @Pointcut("within(com.cabonline..*)")
     public void allControllerPackage() {
     }

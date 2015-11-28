@@ -40,22 +40,26 @@ public class WikipediaIntegrationImpl implements WikipediaIntegration {
 
     @Override
     public WikipediaResponseDTO query(String title) {
+
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
         WikipediaResponseDTO wikipediaResponseDTO = new WikipediaResponseDTO();
+
+        String url = null;
+
         try {
             Instant before = Instant.now();
             String wikipediaJSON = customRestTemplate
                     .exchange(wikipediaExtractEndpoint + title, HttpMethod.GET, entity, String.class).getBody();
             Instant after = Instant.now();
-            //TODO set to debug
-            LOG.info("Request to {} took {} ", new Object[]{wikipediaExtractEndpoint + title, Duration.between(before, after)});
+            url = wikipediaExtractEndpoint + title;
+            LOG.debug("Request to {} took {} ", new Object[]{url, Duration.between(before, after)});
             wikipediaResponseDTO = objectMapper.readValue(wikipediaJSON, WikipediaResponseDTO.class);
 
         } catch (HttpStatusCodeException ex) {
-            LOG.error(ErrorMessages.HTTP_RESPONSE_ERROR, ex);
+            LOG.error(ErrorMessages.HTTP_RESPONSE_ERROR+" "+url, ex);
             wikipediaResponseDTO.setError(ErrorCodes.WIKIPEDIA_GENERIC, ErrorMessages.HTTP_RESPONSE_ERROR);
         } catch (IOException e) {
             LOG.error(ErrorMessages.JSON_PARSING_ERROR, e);

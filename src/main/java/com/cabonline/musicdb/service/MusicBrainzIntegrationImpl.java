@@ -45,20 +45,22 @@ public class MusicBrainzIntegrationImpl implements MusicBrainzIntegration {
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
-        MusicBrainzResponseDTO musicBrainzResponseDTO = null;
+        MusicBrainzResponseDTO musicBrainzResponseDTO = new MusicBrainzResponseDTO();
+        String url = null;
         try {
             Instant before = Instant.now();
-            String url = musicbrainzArtistEndpoint
+            url = musicbrainzArtistEndpoint
                     + mbId + "?fmt=json&inc=url-rels+release-groups";
             String artistDataJSON = customRestTemplate
                     .exchange(url, HttpMethod.GET, entity, String.class).getBody();
             Instant after = Instant.now();
-            //TODO set to debug
-            LOG.info("Request to {} took {} ", new Object[]{url, Duration.between(before, after)});
+            LOG.debug("Request to {} took {} ", new Object[]{url, Duration.between(before, after)});
             musicBrainzResponseDTO = objectMapper.readValue(artistDataJSON, MusicBrainzResponseDTO.class);
         } catch (HttpStatusCodeException ex) {
+            LOG.error(ErrorMessages.HTTP_RESPONSE_ERROR+" "+url, ex);
             musicBrainzResponseDTO.setError(ErrorCodes.MUSIC_BRAINZ_GENERIC, ErrorMessages.HTTP_RESPONSE_ERROR);
         } catch (IOException e) {
+            LOG.error(ErrorMessages.JSON_PARSING_ERROR, e);
             musicBrainzResponseDTO.setError(ErrorCodes.MUSIC_BRAINZ_GENERIC, ErrorMessages.JSON_PARSING_ERROR);
         }
 

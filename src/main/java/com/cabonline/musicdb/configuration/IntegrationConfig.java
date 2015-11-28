@@ -48,13 +48,13 @@ public class IntegrationConfig {
         RequestConfig requestConfig = RequestConfig.custom()
                 .setConnectionRequestTimeout(readTimeout)
                 .setConnectTimeout(connectionTimeout)
-                        //Turning off the socket timeouts
+                //Turning off the socket timeouts
                 .setSocketTimeout(socketTimeout)
                 .build();
 
         SocketConfig socketConfig = SocketConfig.custom()
                 .setSoKeepAlive(true)
-                        //The packets supposed to be small, so it's safe to turn tcp no delay on
+                //The packets supposed to be small, so it's safe to turn tcp no delay on
                 .setTcpNoDelay(true)
                 .build();
 
