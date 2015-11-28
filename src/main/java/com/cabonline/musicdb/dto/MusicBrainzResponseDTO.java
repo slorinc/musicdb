@@ -9,7 +9,7 @@ import java.util.List;
  * Created by s_lor_000 on 11/24/2015.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MusicBrainzResponseDTO extends RestResponse {
+public class MusicBrainzResponseDTO extends ErrorDTO {
 
     private String name;
 

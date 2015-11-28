@@ -33,7 +33,7 @@ public class MusicFacadeImpl implements MusicFacade {
 
     @Override
     public MusicDBResponseDTO query(String mbId) throws IOException {
-        List<RestResponse> errors = new LinkedList<>();
+        List<ErrorDTO> errors = new LinkedList<>();
         String extract = null;
         // musicbrainz
         MusicBrainzResponseDTO musicBrainzResponseDTO = musicBrainzIntegration.query(mbId);
@@ -112,9 +112,9 @@ public class MusicFacadeImpl implements MusicFacade {
         return musicDBResponseDTO;
     }
 
-    private <T extends RestResponse> void addErrors(List<RestResponse> errors, T dto) {
+    private <T extends ErrorDTO> void addErrors(List<ErrorDTO> errors, T dto) {
         if (dto.getErrorCode() != null) {
-            errors.add(new RestResponse(dto.getErrorCode(), dto.getErrorMessage()));
+            errors.add(new ErrorDTO(dto.getErrorCode(), dto.getErrorMessage()));
         }
     }
 }

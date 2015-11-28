@@ -6,15 +6,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by s_lor_000 on 11/28/2015.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RestResponse {
+public class ErrorDTO {
 
     private String errorCode;
     private String errorMessage;
 
-    public RestResponse() {
+    public ErrorDTO() {
     }
 
-    public RestResponse(String errorCode, String errorMessage) {
+    public ErrorDTO(String errorCode, String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }

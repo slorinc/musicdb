@@ -8,7 +8,7 @@ import java.util.List;
  * Created by s_lor_000 on 11/28/2015.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CoverArtArchiveResponseDTO extends RestResponse {
+public class CoverArtArchiveResponseDTO extends ErrorDTO {
 
     private List<CoverArtImagesDTO> images;
 

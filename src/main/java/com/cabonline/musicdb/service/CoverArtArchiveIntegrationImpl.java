@@ -28,7 +28,7 @@ import java.util.concurrent.Future;
  * Created by s_lor_000 on 11/24/2015.
  */
 @Service
-class CoverArtArchiveIntegrationImpl implements CoverArtArchiveIntegration {
+public class CoverArtArchiveIntegrationImpl implements CoverArtArchiveIntegration {
 
     @Autowired
     private ObjectMapper objectMapper;

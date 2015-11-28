@@ -1,7 +1,6 @@
 package com.cabonline.musicdb.dto;
 
 import com.cabonline.musicdb.vo.Album;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,10 +19,10 @@ public class MusicDBResponseDTO {
 
     private List<Album> albums;
 
-    private List<RestResponse> errors;
+    private List<ErrorDTO> errors;
 
 
-    public MusicDBResponseDTO(String mbId, String description, List<Album> albums, List<RestResponse> errors) {
+    public MusicDBResponseDTO(String mbId, String description, List<Album> albums, List<ErrorDTO> errors) {
         this.mbId = mbId;
         this.description = description;
         this.albums = albums;
@@ -54,11 +53,11 @@ public class MusicDBResponseDTO {
         this.albums = albums;
     }
 
-    public List<RestResponse> getErrors() {
+    public List<ErrorDTO> getErrors() {
         return errors;
     }
 
-    public void setErrors(List<RestResponse> errors) {
+    public void setErrors(List<ErrorDTO> errors) {
         this.errors = errors;
     }
 }
