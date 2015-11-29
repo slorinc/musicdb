@@ -40,4 +40,13 @@ public class Album {
     public void setImage(String image) {
         this.image = image;
     }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "title='" + title + '\'' +
+                ", id='" + id + '\'' +
+                ", image='" + image + '\'' +
+                '}';
+    }
 }
