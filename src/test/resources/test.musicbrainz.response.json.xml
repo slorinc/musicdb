@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <entry key="musinbrainz.mroizo.response.json">
+{
+        "life-span": {
+        "begin": "1974-04-14",
+        "ended": false,
+        "end": null
+        },
+        "relations": [
+        {
+        "attribute-values": {},
+        "url": {
+        "relations": [],
+        "id": "760e886a-b726-4baf-a1f4-96e793786939",
+        "resource": "http://en.wikipedia.org/wiki/Mr._Oizo"
+        },
+        "target-credit": "",
+        "source-credit": "",
+        "ended": false,
+        "direction": "forward",
+        "begin": null,
+        "type": "wikipedia",
+        "attributes": [],
+        "end": null,
+        "type-id": "29651736-fa6d-48e4-aadc-a557c6add1cb"
+        },
+        {
+        "end": null,
+        "type-id": "e4d73442-3762-45a8-905c-401da65544ed",
+        "ended": false,
+        "direction": "forward",
+        "type": "lyrics",
+        "begin": null,
+        "attributes": [],
+        "target-credit": "",
+        "source-credit": "",
+        "attribute-values": {},
+        "url": {
+        "resource": "http://muzikum.eu/en/122-6614/mr.-oizo/lyrics.html",
+        "relations": [],
+        "id": "a16e4c30-490b-437c-bd24-809adc0b6edc"
+        }
+        },
+        {
+        "end": null,
+        "type-id": "d94fb61c-fa20-4e3c-a19a-71a949fb2c55",
+        "begin": null,
+        "type": "other databases",
+        "direction": "forward",
+        "ended": false,
+        "attributes": [],
+        "source-credit": "",
+        "target-credit": "",
+        "attribute-values": {},
+        "url": {
+        "id": "6d8364d8-e880-4874-9e9a-becd1e10e3fb",
+        "relations": [],
+        "resource": "http://rateyourmusic.com/artist/mr__oizo"
+        }
+        },
+        {
+        "attribute-values": {},
+        "url": {
+        "resource": "http://viaf.org/viaf/228841194",
+        "id": "2af6b23a-ec98-43d5-8541-0fcea4c410b4",
+        "relations": []
+        },
+        "source-credit": "",
+        "target-credit": "",
+        "type": "VIAF",
+        "begin": null,
+        "ended": false,
+        "direction": "forward",
+        "attributes": [],
+        "end": null,
+        "type-id": "e8571dcc-35d4-4e91-a577-a3382fd84460"
+        },
+        {
+        "url": {
+        "resource": "http://www.allmusic.com/artist/mn0000935664",
+        "id": "27cd68d5-c200-4d2d-ab20-6e1ed7510c75",
+        "relations": []
+        },
+        "attribute-values": {},
+        "target-credit": "",
+        "source-credit": "",
+        "attributes": [],
+        "ended": false,
+        "direction": "forward",
+        "type": "allmusic",
+        "begin": null,
+        "type-id": "6b3e3c85-0002-4f34-aca6-80ace0d7e846",
+        "end": null
+        },
+        {
+        "attribute-values": {},
+        "url": {
+        "id": "c22139c3-2981-48e4-ac50-9d142ec72ad4",
+        "relations": [],
+        "resource": "http://www.discogs.com/artist/791"
+        },
+        "source-credit": "",
+        "target-credit": "",
+        "type": "discogs",
+        "begin": null,
+        "direction": "forward",
+        "ended": false,
+        "attributes": [],
+        "end": null,
+        "type-id": "04a5b104-a4c2-4bac-99a1-7b837c37d9e4"
+        },
+        {
+        "type-id": "94c8b0cc-4477-4106-932c-da60e63de61c",
+        "end": null,
+        "attributes": [],
+        "type": "IMDb",
+        "begin": null,
+        "ended": false,
+        "direction": "forward",
+        "source-credit": "",
+        "target-credit": "",
+        "url": {
+        "resource": "http://www.imdb.com/name/nm1189197/",
+        "id": "0a6b3fd0-21d6-4e35-85f2-c1214c7b73cc",
+        "relations": []
+        },
+        "attribute-values": {}
+        },
+        {
+        "type-id": "689870a4-a1e4-4912-b17f-7b2664215698",
+        "end": null,
+        "attributes": [],
+        "begin": null,
+        "type": "wikidata",
+        "direction": "forward",
+        "ended": false,
+        "source-credit": "",
+        "target-credit": "",
+        "url": {
+        "resource": "http://www.wikidata.org/wiki/Q453691",
+        "id": "09aed6e4-0143-4bed-a5f3-2bd78466e246",
+        "relations": []
+        },
+        "attribute-values": {}
+        },
+        {
+        "attributes": [],
+        "ended": false,
+        "direction": "forward",
+        "type": "social network",
+        "begin": "2009-03-24",
+        "type-id": "99429741-f3f6-484b-84f8-23af51991770",
+        "end": null,
+        "url": {
+        "resource": "https://twitter.com/oizo3000",
+        "relations": [],
+        "id": "cabf2fbb-aecb-46ae-914b-80b8fff37f67"
+        },
+        "attribute-values": {},
+        "target-credit": "",
+        "source-credit": ""
+        }
+        ],
+        "area": {
+        "iso_3166_3_codes": [],
+        "iso_3166_1_codes": [
+        "FR"
+        ],
+        "name": "France",
+        "id": "08310658-51eb-3801-80de-5a0739207115",
+        "iso_3166_2_codes": [],
+        "sort-name": "France",
+        "disambiguation": ""
+        },
+        "gender": "Male",
+        "end_area": null,
+        "type": "Person",
+        "ipis": [],
+        "release-groups": [
+        {
+        "title": "Steak",
+        "secondary-types": [
+        "Soundtrack"
+        ],
+        "primary-type": "Album",
+        "relations": [],
+        "first-release-date": "2007-06",
+        "id": "0b23153e-621b-3f82-8517-29b0865eb808",
+        "disambiguation": ""
+        },
+        {
+        "relations": [],
+        "primary-type": "EP",
+        "id": "11fe246e-9e6c-3534-ada8-4e8d724dfc30",
+        "first-release-date": "2007-06-05",
+        "disambiguation": "",
+        "title": "Transexual / Patrick122",
+        "secondary-types": []
+        },
+        {
+        "title": "Unreleased Unfinished Unpleasant (2004–2012)",
+        "secondary-types": [],
+        "relations": [],
+        "primary-type": "EP",
+        "first-release-date": "2012-11-22",
+        "id": "27c6c1f3-6a63-4380-b2ed-f9de5c6a441e",
+        "disambiguation": ""
+        },
+        {
+        "disambiguation": "",
+        "id": "3d503f0f-f7df-3225-aefe-583305a46f89",
+        "first-release-date": "2008-11-05",
+        "relations": [],
+        "primary-type": "Album",
+        "secondary-types": [],
+        "title": "Lambs Anger"
+        },
+        {
+        "title": "M-Seq",
+        "secondary-types": [],
+        "primary-type": "EP",
+        "relations": [],
+        "first-release-date": "1998-07",
+        "id": "437a9606-3de6-358b-87d6-7746f435d3ae",
+        "disambiguation": ""
+        },
+        {
+        "primary-type": "Album",
+        "relations": [],
+        "disambiguation": "",
+        "first-release-date": "2011-11-21",
+        "id": "4cd51b1d-8b0f-4637-8393-0a44b8f61a8d",
+        "secondary-types": [],
+        "title": "Stade 2"
+        },
+        {
+        "title": "Wrong",
+        "secondary-types": [
+        "Soundtrack"
+        ],
+        "first-release-date": "2012-08-27",
+        "id": "552d9125-5ef3-4e9b-90df-1ec186dcbcb9",
+        "disambiguation": "",
+        "relations": [],
+        "primary-type": "Album"
+        },
+        {
+        "secondary-types": [],
+        "title": "Analog Worms Attack",
+        "disambiguation": "",
+        "id": "582cb922-de5e-3367-9205-bdd44bf7c507",
+        "first-release-date": "1999-10-19",
+        "relations": [],
+        "primary-type": "Album"
+        },
+        {
+        "secondary-types": [
+        "Compilation"
+        ],
+        "title": "Wrong Cops (Best Of)",
+        "primary-type": "Album",
+        "relations": [],
+        "disambiguation": "",
+        "first-release-date": "2013-12-02",
+        "id": "5906ee50-07ef-4318-b20d-4195420f8ff7"
+        },
+        {
+        "secondary-types": [],
+        "title": "Amicalement",
+        "disambiguation": "",
+        "id": "5af7308e-a2ce-47f3-9fc5-e013af08da43",
+        "first-release-date": "2013-07-01",
+        "relations": [],
+        "primary-type": "EP"
+        },
+        {
+        "secondary-types": [],
+        "title": "Positif",
+        "disambiguation": "",
+        "id": "5bed27af-f1b9-3c14-a71a-7f05791f667a",
+        "first-release-date": "2008-11",
+        "primary-type": "Single",
+        "relations": []
+        },
+        {
+        "secondary-types": [],
+        "title": "Moustache (Half a Scissor)",
+        "disambiguation": "",
+        "first-release-date": "2005-08-29",
+        "id": "65e994a0-f13e-387b-bef9-1fc2c8a73bba",
+        "relations": [],
+        "primary-type": "Album"
+        },
+        {
+        "secondary-types": [
+        "Soundtrack"
+        ],
+        "title": "Rubber EP",
+        "primary-type": null,
+        "relations": [],
+        "disambiguation": "",
+        "first-release-date": "2010",
+        "id": "69cc1222-e1d5-49af-925c-a478fd3f1a70"
+        },
+        {
+        "secondary-types": [],
+        "title": "Last Night a DJ Killed My Dog",
+        "primary-type": "Single",
+        "relations": [],
+        "disambiguation": "",
+        "first-release-date": "2000-02",
+        "id": "76cf209e-766c-3711-a3dc-8b6e46961393"
+        },
+        {
+        "relations": [],
+        "primary-type": "Single",
+        "disambiguation": "",
+        "first-release-date": "1999",
+        "id": "77bb8737-351c-4276-a02c-9d82eac32430",
+        "secondary-types": [],
+        "title": "Analog Worms Attack"
+        },
+        {
+        "secondary-types": [],
+        "title": "Moustache (Half a Scissor)",
+        "primary-type": "EP",
+        "relations": [],
+        "disambiguation": "",
+        "first-release-date": "2005-10-03",
+        "id": "7c1ce9b6-c0d8-41cf-9ee0-38bc5444e0d9"
+        },
+        {
+        "secondary-types": [],
+        "title": "Bear Biscuit",
+        "relations": [],
+        "primary-type": "Single",
+        "disambiguation": "",
+        "first-release-date": "2014-10-10",
+        "id": "82efb42b-799b-4df0-b85d-cc18522bbf8c"
+        },
+        {
+        "secondary-types": [],
+        "title": "Nazis",
+        "disambiguation": "",
+        "id": "8fd0250b-e73c-326c-bfaa-593e64f2a9d9",
+        "first-release-date": "2006-05-19",
+        "relations": [],
+        "primary-type": "EP"
+        },
+        {
+        "disambiguation": "",
+        "first-release-date": "2004-04-01",
+        "id": "a3f2a76c-0e8d-37f2-8576-8ed2f31c6a33",
+        "relations": [],
+        "primary-type": "Single",
+        "secondary-types": [],
+        "title": "Stunt"
+        },
+        {
+        "secondary-types": [],
+        "title": "Stade 3",
+        "disambiguation": "",
+        "id": "b0eb80ed-9378-4e58-beb7-654ce81fc564",
+        "first-release-date": "2012-04-25",
+        "relations": [],
+        "primary-type": "EP"
+        },
+        {
+        "disambiguation": "",
+        "first-release-date": "2014-11-17",
+        "id": "c438964d-0099-4007-b9ec-5068f4537a66",
+        "relations": [],
+        "primary-type": "Album",
+        "secondary-types": [],
+        "title": "The Church"
+        },
+        {
+        "secondary-types": [],
+        "title": "Pourriture",
+        "disambiguation": "",
+        "id": "cbfa8e43-3b7a-43e6-92ff-01653c6799bc",
+        "first-release-date": "2009-03-16",
+        "primary-type": "EP",
+        "relations": []
+        },
+        {
+        "relations": [],
+        "primary-type": "Album",
+        "disambiguation": "",
+        "id": "e1d85408-1b10-4815-9156-b914333e735b",
+        "first-release-date": "2010-11-08",
+        "secondary-types": [
+        "Soundtrack"
+        ],
+        "title": "Rubber"
+        },
+        {
+        "title": "Flat Beat",
+        "secondary-types": [],
+        "relations": [],
+        "primary-type": "Single",
+        "first-release-date": "1999-03-22",
+        "id": "e31749af-ca16-37ef-acff-fa67ff998db5",
+        "disambiguation": ""
+        },
+        {
+        "primary-type": "EP",
+        "relations": [],
+        "disambiguation": "",
+        "id": "f72d14a7-29c5-333c-8566-c548850d6103",
+        "first-release-date": "1997-09",
+        "secondary-types": [],
+        "title": "#1"
+        }
+        ],
+        "country": "FR",
+        "id": "a4a3048f-3968-4848-9f53-94e3d4f88b53",
+        "name": "Mr. Oizo",
+        "disambiguation": "",
+        "sort-name": "Oizo, Mr.",
+        "begin_area": {
+        "name": "Paris",
+        "id": "dc10c22b-e510-4006-8b7f-fecb4f36436e",
+        "disambiguation": "",
+        "iso_3166_2_codes": [
+        "FR-75"
+        ],
+        "sort-name": "Paris",
+        "iso_3166_1_codes": [],
+        "iso_3166_3_codes": []
+        }
+        }
+    </entry>
+</properties>

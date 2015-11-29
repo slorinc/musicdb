@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <entry key="coverartarchive.response.json">
+        {
+        "images": [
+        {
+        "types": [
+        "Front"
+        ],
+        "front": true,
+        "back": false,
+        "edit": 20473306,
+        "image": "http://test.com/image.jpg",
+        "comment": "",
+        "approved": true,
+        "thumbnails": {
+        "large": "http://coverartarchive.org/release/a146429a-cedc-3ab0-9e41-1aaf5f6cdc2d/3012495605-500.jpg",
+        "small": "http://coverartarchive.org/release/a146429a-cedc-3ab0-9e41-1aaf5f6cdc2d/3012495605-250.jpg"
+        },
+        "id": "3012495605"
+        }
+        ],
+        "release": "http://musicbrainz.org/release/a146429a-cedc-3ab0-9e41-1aaf5f6cdc2d"
+        }
+    </entry>
+</properties>
