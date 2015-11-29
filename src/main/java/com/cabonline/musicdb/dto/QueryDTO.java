@@ -19,4 +19,11 @@ public class QueryDTO {
     public void setPages(Map<String, Map<String, String>> pages) {
         this.pages = pages;
     }
+
+    @Override
+    public String toString() {
+        return "QueryDTO{" +
+                "pages=" + pages +
+                '}';
+    }
 }

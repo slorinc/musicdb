@@ -26,4 +26,12 @@ public class RelationDTO {
     public void setUrl(UrlDTO url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "RelationDTO{" +
+                "type='" + type + '\'' +
+                ", url=" + url +
+                '}';
+    }
 }

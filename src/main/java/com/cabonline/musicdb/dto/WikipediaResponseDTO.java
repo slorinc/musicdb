@@ -17,4 +17,11 @@ public class WikipediaResponseDTO extends ErrorDTO {
     public void setQuery(QueryDTO query) {
         this.query = query;
     }
+
+    @Override
+    public String toString() {
+        return "WikipediaResponseDTO{" +
+                "query=" + query +
+                '}';
+    }
 }

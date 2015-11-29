@@ -1,6 +1,7 @@
 package com.cabonline.musicdb.service;
 
 import com.cabonline.musicdb.dto.*;
+import com.cabonline.musicdb.dto.builder.ErrorDTOBuilder;
 import com.cabonline.musicdb.dto.builder.MusicDBResponseDTOBuilder;
 import com.cabonline.musicdb.error.ErrorCodes;
 import com.cabonline.musicdb.error.ErrorMessages;
@@ -91,7 +92,7 @@ public class MusicFacadeImpl implements MusicFacade {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
-                errors.add(new ErrorDTO(ErrorCodes.MUSICDB_GENERIC, e.getMessage()));
+                errors.add(new ErrorDTOBuilder().setErrorCode(ErrorCodes.MUSICDB_GENERIC).setErrorMessage(e.getMessage()).createErrorDTO());
                 LOG.error(ErrorMessages.GENERIC_ERROR, e);
             }
         }
@@ -99,7 +100,7 @@ public class MusicFacadeImpl implements MusicFacade {
 
     private <T extends ErrorDTO> void addErrors(List<ErrorDTO> errors, T dto) {
         if (dto.getErrorCode() != null) {
-            errors.add(new ErrorDTO(dto.getErrorCode(), dto.getErrorMessage()));
+            errors.add(new ErrorDTOBuilder().setErrorCode(dto.getErrorCode()).setErrorMessage(dto.getErrorMessage()).createErrorDTO());
         }
     }
 
@@ -123,24 +124,30 @@ public class MusicFacadeImpl implements MusicFacade {
                                 }
 
                             } catch (InterruptedException e) {
-                                errors.add(new ErrorDTO(ErrorCodes.MUSICDB_GENERIC, e.getMessage()));
+                                errors.add(new ErrorDTOBuilder().setErrorCode(ErrorCodes.MUSICDB_GENERIC).setErrorMessage(e.getMessage()).createErrorDTO());
                                 LOG.error(ErrorMessages.GENERIC_ERROR, e);
                             } catch (ExecutionException ex) {
-                                errors.add(new ErrorDTO(ErrorCodes.MUSICDB_GENERIC, ex.getMessage()));
+                                errors.add(new ErrorDTOBuilder().setErrorCode(ErrorCodes.MUSICDB_GENERIC).setErrorMessage(ex.getMessage()).createErrorDTO());
                                 LOG.error(ErrorMessages.GENERIC_ERROR, ex);
                             }
 
                             albums.add(new Album(p.getTitle(), p.getMdId(), imageUrl));
-                }
-        );
+                        }
+                );
 
-
-        return new MusicDBResponseDTOBuilder()
+        MusicDBResponseDTO musicDBResponseDTO = new MusicDBResponseDTOBuilder()
                 .setMbId(mbId)
                 .setDescription(extract)
                 .setAlbums(albums.isEmpty() ? null : albums)
                 .setErrors(errors.isEmpty() ? null : errors)
                 .createMusicDBResponseDTO();
+
+        if (!errors.isEmpty()) {
+            musicDBResponseDTO.setErrorCode(ErrorCodes.MUSICDB_GENERIC);
+            musicDBResponseDTO.setErrorMessage(ErrorMessages.ERRORS_DURING_EXCECUTION);
+        }
+
+        return musicDBResponseDTO;
     }
 
 }

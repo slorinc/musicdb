@@ -39,4 +39,12 @@ public class ErrorDTO {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
+
+    @Override
+    public String toString() {
+        return "ErrorDTO{" +
+                "errorCode='" + errorCode + '\'' +
+                ", errorMessage='" + errorMessage + '\'' +
+                '}';
+    }
 }

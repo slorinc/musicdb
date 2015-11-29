@@ -17,4 +17,11 @@ public class UrlDTO {
     public void setResource(String resource) {
         this.resource = resource;
     }
+
+    @Override
+    public String toString() {
+        return "UrlDTO{" +
+                "resource='" + resource + '\'' +
+                '}';
+    }
 }

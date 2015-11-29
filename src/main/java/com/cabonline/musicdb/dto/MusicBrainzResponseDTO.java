@@ -42,4 +42,13 @@ public class MusicBrainzResponseDTO extends ErrorDTO {
     public void setRelationList(List<RelationDTO> relationList) {
         this.relationList = relationList;
     }
+
+    @Override
+    public String toString() {
+        return "MusicBrainzResponseDTO{" +
+                "name='" + name + '\'' +
+                ", releasesList=" + releasesList +
+                ", relationList=" + relationList +
+                '}';
+    }
 }

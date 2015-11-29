@@ -10,7 +10,7 @@ import java.util.List;
  * Created by s_lor_000 on 11/24/2015.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MusicDBResponseDTO {
+public class MusicDBResponseDTO extends ErrorDTO{
 
     @JsonProperty("mbid")
     private String mbId;
@@ -59,5 +59,15 @@ public class MusicDBResponseDTO {
 
     public void setErrors(List<ErrorDTO> errors) {
         this.errors = errors;
+    }
+
+    @Override
+    public String toString() {
+        return "MusicDBResponseDTO{" +
+                "mbId='" + mbId + '\'' +
+                ", description='" + description + '\'' +
+                ", albums=" + albums +
+                ", errors=" + errors +
+                '}';
     }
 }
