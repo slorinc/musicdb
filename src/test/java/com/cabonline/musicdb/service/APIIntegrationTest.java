@@ -1,11 +1,13 @@
-package com.cabonline.musicdb;
+package com.cabonline.musicdb.service;
 
 /**
  * Created by s_lor_000 on 11/29/2015.
  */
 
+import com.cabonline.musicdb.Application;
 import com.cabonline.musicdb.dto.CoverArtArchiveResponseDTO;
 import com.cabonline.musicdb.dto.MusicBrainzResponseDTO;
+import com.cabonline.musicdb.dto.WikipediaResponseDTO;
 import com.cabonline.musicdb.service.CoverArtArchiveIntegration;
 import com.cabonline.musicdb.service.MusicBrainzIntegration;
 import com.jayway.restassured.RestAssured;
@@ -27,6 +29,7 @@ import java.net.URLEncoder;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
 import static com.jayway.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.contains;
@@ -41,12 +44,12 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public class ApplicationTest {
+public class APIIntegrationTest {
 
-    private static final String MBID = "a4a3048f-3968-4848-9f53-94e3d4f88b53";
-    private static final String WIKIPAGE_TITLE = "Mr._Oizo";
+    public static final String MBID = "a4a3048f-3968-4848-9f53-94e3d4f88b53";
+    public static final String WIKIPAGE_TITLE = "Mr._Oizo";
     private static final String CONTEXT_PATH = "/musicdb";
-    private static final String COVERART_MBID = "1b022e01-4da6-387b-8658-8678046e4cef";
+    public static final String COVERART_MBID = "1b022e01-4da6-387b-8658-8678046e4cef";
 
     @Value("${local.server.port}")
     private int serverPort;
@@ -63,6 +66,9 @@ public class ApplicationTest {
     @Value("${musinbrainz.mroizo.response.json}")
     private String oizoMusicBrainzResponseJson;
 
+    @Value("${coverart.releasegroup.endpoint}")
+    private String coverartReleaseGroupEndpoint;
+
     @Value("${coverartarchive.response.json}")
     private String coverartResponseJson;
 
@@ -71,6 +77,9 @@ public class ApplicationTest {
 
     @Autowired
     private MusicBrainzIntegration musicBrainzIntegration;
+
+    @Autowired
+    private WikipediaIntegration wikipediaIntegration;
 
     @Autowired
     private RestTemplate customRestTemplate;
@@ -92,20 +101,22 @@ public class ApplicationTest {
 
     @Test
     public void testCoverArtRestCall() throws InterruptedException, ExecutionException {
-        mockRestServiceServer.expect(requestTo("http://coverartarchive.org/release-group/1b022e01-4da6-387b-8658-8678046e4cef"))
+        String url = coverartReleaseGroupEndpoint
+                + COVERART_MBID;
+        mockRestServiceServer.expect(requestTo(url))
                 .andExpect(method(GET))
                 .andRespond(withSuccess(coverartResponseJson, APPLICATION_JSON));
-        final Future<CoverArtArchiveResponseDTO> query = coverArtArchiveIntegration.query(COVERART_MBID);
-        while (!query.isDone()) {
+        final Future<CoverArtArchiveResponseDTO> coverArtArchiveResponseDTOFuture = coverArtArchiveIntegration.query(COVERART_MBID);
+        while (!coverArtArchiveResponseDTOFuture.isDone()) {
             Thread.sleep(10);
         }
-        assertTrue(query.get().getImages().get(0).getImage().equals("http://test.com/image.jpg"));
-        System.out.println(query.get());
+        assertTrue(coverArtArchiveResponseDTOFuture.get().getImages().get(0).getImage().equals("http://test.com/image.jpg"));
+        System.out.println(coverArtArchiveResponseDTOFuture.get());
 
     }
 
     @Test
-    public void testMusicBrainsRestCall() throws UnsupportedEncodingException {
+    public void testMusicBrainsRestCall(){
         String url = musicbrainzArtistEndpoint
                 + MBID + "?fmt=json&inc=url-rels%2Brelease-groups";
         mockRestServiceServer.expect(requestTo(url))
@@ -120,5 +131,19 @@ public class ApplicationTest {
 
 
     }
+
+    @Test
+    public void testWikipediaRestCall(){
+        String url = wikipediaExtractEndpoint + WIKIPAGE_TITLE;
+        mockRestServiceServer.expect(requestTo(url))
+                .andExpect(method(GET))
+                .andRespond(withSuccess(oizoWikipeadiaResponseJson, APPLICATION_JSON));
+        final WikipediaResponseDTO wikipediaResponseDTO = wikipediaIntegration.query(WIKIPAGE_TITLE);
+        System.out.println(wikipediaResponseDTO);
+        assertThat("pages", wikipediaResponseDTO.getQuery().getPages().size(), equalTo(1));
+        assertThat("pages.2903477", wikipediaResponseDTO.getQuery().getPages().get("2903477").size(), equalTo(4));
+        assertThat("pages.first.extract", wikipediaResponseDTO.getQuery().getPages().values().stream().findFirst().get().get("extract"), equalTo("This is the extract"));
+    }
+
 
 }

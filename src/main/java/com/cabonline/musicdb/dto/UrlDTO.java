@@ -8,6 +8,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UrlDTO {
 
+    public UrlDTO() {
+    }
+
+    public UrlDTO(String resource) {
+        this.resource = resource;
+    }
+
     private String resource;
 
     public String getResource() {

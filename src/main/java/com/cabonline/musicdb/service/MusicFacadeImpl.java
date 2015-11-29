@@ -35,7 +35,7 @@ public class MusicFacadeImpl implements MusicFacade {
 
 
     @Override
-    public MusicDBResponseDTO query(String mbId) throws IOException {
+    public MusicDBResponseDTO query(String mbId) {
         List<ErrorDTO> errors = new LinkedList<>();
         // musicbrainz
         MusicBrainzResponseDTO musicBrainzResponseDTO = musicBrainzIntegration.query(mbId);

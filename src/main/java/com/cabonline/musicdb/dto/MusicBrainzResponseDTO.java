@@ -11,10 +11,13 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MusicBrainzResponseDTO extends ErrorDTO {
 
+    public MusicBrainzResponseDTO() {
+    }
+
     private String name;
 
     @JsonProperty("release-groups")
-    private List<ReleasesDTO> releasesList;
+    private List<ReleaseDTO> releasesList;
 
     @JsonProperty("relations")
     private List<RelationDTO> relationList;
@@ -27,11 +30,11 @@ public class MusicBrainzResponseDTO extends ErrorDTO {
         this.name = name;
     }
 
-    public List<ReleasesDTO> getReleasesList() {
+    public List<ReleaseDTO> getReleasesList() {
         return releasesList;
     }
 
-    public void setReleasesList(List<ReleasesDTO> releasesList) {
+    public void setReleasesList(List<ReleaseDTO> releasesList) {
         this.releasesList = releasesList;
     }
 

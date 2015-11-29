@@ -10,6 +10,13 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class QueryDTO {
 
+    public QueryDTO() {
+    }
+
+    public QueryDTO(Map<String, Map<String, String>> pages) {
+        this.pages = pages;
+    }
+
     private Map<String,Map<String,String>> pages;
 
     public Map<String, Map<String, String>> getPages() {

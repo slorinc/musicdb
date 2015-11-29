@@ -12,6 +12,14 @@ public class CoverArtArchiveResponseDTO extends ErrorDTO {
 
     private List<CoverArtImagesDTO> images;
 
+    public CoverArtArchiveResponseDTO() {
+    }
+
+    public CoverArtArchiveResponseDTO(String errorCode, String errorMessage, List<CoverArtImagesDTO> images) {
+        super(errorCode, errorMessage);
+        this.images = images;
+    }
+
     public List<CoverArtImagesDTO> getImages() {
         return images;
     }

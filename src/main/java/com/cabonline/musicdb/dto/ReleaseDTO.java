@@ -7,7 +7,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by s_lor_000 on 11/28/2015.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReleasesDTO {
+public class ReleaseDTO {
+
+    public ReleaseDTO() {
+    }
+
+    public ReleaseDTO(String title, String primaryType, String mdId) {
+        this.title = title;
+        this.primaryType = primaryType;
+        this.mdId = mdId;
+    }
 
     private String title;
 

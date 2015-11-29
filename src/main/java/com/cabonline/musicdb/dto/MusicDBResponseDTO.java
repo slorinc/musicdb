@@ -21,6 +21,8 @@ public class MusicDBResponseDTO extends ErrorDTO{
 
     private List<ErrorDTO> errors;
 
+    public MusicDBResponseDTO() {
+    }
 
     public MusicDBResponseDTO(String mbId, String description, List<Album> albums, List<ErrorDTO> errors) {
         this.mbId = mbId;

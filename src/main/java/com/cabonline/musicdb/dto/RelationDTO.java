@@ -11,6 +11,14 @@ public class RelationDTO {
     private String type;
     private UrlDTO url;
 
+    public RelationDTO() {
+    }
+
+    public RelationDTO(String type, UrlDTO url) {
+        this.type = type;
+        this.url = url;
+    }
+
     public String getType() {
         return type;
     }

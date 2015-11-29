@@ -2,8 +2,80 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+    <entry key="musicbrains.mroizo.stripped.response.json">
+        {
+        "disambiguation": "",
+        "sort-name": "Oizo, Mr.",
+        "begin_area": {
+        "iso_3166_3_codes": [],
+        "iso_3166_1_codes": [],
+        "iso_3166_2_codes": [
+        "FR-75"
+        ],
+        "sort-name": "Paris",
+        "disambiguation": "",
+        "name": "Paris",
+        "id": "dc10c22b-e510-4006-8b7f-fecb4f36436e"
+        },
+        "country": "FR",
+        "id": "a4a3048f-3968-4848-9f53-94e3d4f88b53",
+        "name": "Mr. Oizo",
+        "ipis": [],
+        "release-groups": [
+        {
+        "title": "Steak",
+        "secondary-types": [
+        "Soundtrack"
+        ],
+        "relations": [],
+        "primary-type": "Album",
+        "id": "0b23153e-621b-3f82-8517-29b0865eb808",
+        "first-release-date": "2007-06",
+        "disambiguation": ""
+        }
+        ],
+        "type": "Person",
+        "end_area": null,
+        "gender": "Male",
+        "area": {
+        "name": "France",
+        "id": "08310658-51eb-3801-80de-5a0739207115",
+        "iso_3166_2_codes": [],
+        "disambiguation": "",
+        "sort-name": "France",
+        "iso_3166_1_codes": [
+        "FR"
+        ],
+        "iso_3166_3_codes": []
+        },
+        "relations": [
+        {
+        "url": {
+        "resource": "http://en.wikipedia.org/wiki/Mr._Oizo",
+        "id": "760e886a-b726-4baf-a1f4-96e793786939",
+        "relations": []
+        },
+        "attribute-values": {},
+        "target-credit": "",
+        "source-credit": "",
+        "attributes": [],
+        "ended": false,
+        "direction": "forward",
+        "begin": null,
+        "type": "wikipedia",
+        "type-id": "29651736-fa6d-48e4-aadc-a557c6add1cb",
+        "end": null
+        }
+        ],
+        "life-span": {
+        "end": null,
+        "begin": "1974-04-14",
+        "ended": false
+        }
+        }
+    </entry>
     <entry key="musinbrainz.mroizo.response.json">
-{
+        {
         "life-span": {
         "begin": "1974-04-14",
         "ended": false,

@@ -10,6 +10,14 @@ public class WikipediaResponseDTO extends ErrorDTO {
 
     private QueryDTO query;
 
+    public WikipediaResponseDTO() {
+    }
+
+    public WikipediaResponseDTO(String errorCode, String errorMessage, QueryDTO query) {
+        super(errorCode, errorMessage);
+        this.query = query;
+    }
+
     public QueryDTO getQuery() {
         return query;
     }

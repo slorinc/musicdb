@@ -1,6 +1,7 @@
 package com.cabonline.musicdb.service;
 
 import com.cabonline.musicdb.dto.CoverArtArchiveResponseDTO;
+import com.cabonline.musicdb.dto.builder.CoverArtArchiveResponseDTOBuilder;
 import com.cabonline.musicdb.error.ErrorCodes;
 import com.cabonline.musicdb.error.ErrorMessages;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,7 +50,7 @@ public class CoverArtArchiveIntegrationImpl implements CoverArtArchiveIntegratio
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
-        CoverArtArchiveResponseDTO coverArtArchiveResponseDTO= new CoverArtArchiveResponseDTO();
+        CoverArtArchiveResponseDTO coverArtArchiveResponseDTO= new CoverArtArchiveResponseDTOBuilder().createCoverArtArchiveResponseDTO();
         String url = null;
         try {
             Instant before = Instant.now();

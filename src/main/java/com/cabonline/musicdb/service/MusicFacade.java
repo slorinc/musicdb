@@ -9,5 +9,5 @@ import java.io.IOException;
  */
 public interface MusicFacade {
 
-    MusicDBResponseDTO query(String mbId) throws IOException;
+    MusicDBResponseDTO query(String mbId);
 }

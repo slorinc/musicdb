@@ -1,6 +1,7 @@
 package com.cabonline.musicdb.service;
 
 import com.cabonline.musicdb.dto.WikipediaResponseDTO;
+import com.cabonline.musicdb.dto.builder.WikipediaResponseDTOBuilder;
 import com.cabonline.musicdb.error.ErrorCodes;
 import com.cabonline.musicdb.error.ErrorMessages;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,7 +46,7 @@ public class WikipediaIntegrationImpl implements WikipediaIntegration {
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
-        WikipediaResponseDTO wikipediaResponseDTO = new WikipediaResponseDTO();
+        WikipediaResponseDTO wikipediaResponseDTO = new WikipediaResponseDTOBuilder().createWikipediaResponseDTO();
 
         String url = null;
 

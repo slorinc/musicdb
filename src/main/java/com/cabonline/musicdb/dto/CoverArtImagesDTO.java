@@ -8,6 +8,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CoverArtImagesDTO {
 
+    public CoverArtImagesDTO() {
+    }
+
+    public CoverArtImagesDTO(String image) {
+        this.image = image;
+    }
+
     private String image;
 
     public String getImage() {
