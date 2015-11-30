@@ -11,5 +11,6 @@ public class ErrorMessages {
     public static final String GENERIC_ERROR = "Unexpected error";
     public static final String MISSING_IMAGE = "Missing image";
     public static final String ERRORS_DURING_EXCECUTION = "Error happened during compiling data, some data could be missing. Check 'errors' for more information!";
+    public static final String MBID_VALIDATION_ERROR = "MBID is invalid!";
 
 }

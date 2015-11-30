@@ -13,10 +13,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by s_lor_000 on 11/24/2015.
@@ -31,7 +34,13 @@ public class MusicController {
     private MusicFacade musicFacade;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/{mbid}")
-    public ResponseEntity<MusicDBResponseDTO> retrieveMusicData(@PathVariable("mbid") String mbId) throws IOException {
+    public ResponseEntity<? extends ErrorDTO> retrieveMusicData(@PathVariable("mbid") String mbId) throws IOException {
+        Pattern pattern = Pattern.compile("[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}");
+        Matcher matcher = pattern.matcher(mbId);
+        if (mbId.length()!=36||!matcher.matches()){
+            ErrorDTO errorDTO = new ErrorDTOBuilder().setErrorCode(ErrorCodes.MUSICDB_GENERIC).setErrorMessage(ErrorMessages.MBID_VALIDATION_ERROR).createErrorDTO();
+            return new ResponseEntity<>(errorDTO, HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(musicFacade.query(mbId), HttpStatus.OK);
     }
 
