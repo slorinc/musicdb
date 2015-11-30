@@ -30,7 +30,13 @@ Environment
 Health
 
     curl -X GET https://slorincmusicdb.herokuapp.com/musicdb/health
+
     
+Instruction to run locally
+--
+
+    mvn spring-boot:run
+
 TODO
 --
 
