@@ -1,3 +1,5 @@
+/logs
+/LOG_PATH_IS_UNDEFINED
 ### Java template
 *.class
 
